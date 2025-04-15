@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhuss <dhuss@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 14:45:07 by dhuss             #+#    #+#             */
-/*   Updated: 2025/04/15 16:28:56 by dhuss            ###   ########.fr       */
+/*   Created: 2025/04/15 16:18:20 by dhuss             #+#    #+#             */
+/*   Updated: 2025/04/15 17:01:56 by dhuss            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
-# define EASYFIND_HPP
+#include "Span.hpp"
 
-#include <vector>
-#include <iostream>
-#include <exception>
+int	main()
+{
+	Span span(4);
 
-/*----------------------*/
-/* STL					*/
-/* -> containers		*/
-/* -> iterators			*/
-/* -> Algorithms		*/
-/*----------------------*/
-
-template<typename T>
-typename T::iterator easyfind(T& container, int i);
-
-#include "easyfind.tpp"
-
-#endif
+	span.addNumber(1);
+	span.addNumber(2);
+	span.addNumber(3);
+	span.addNumber(4);
+	span.printSpn();
+	try
+	{
+		span.addNumber(5);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
