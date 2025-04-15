@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <exception>
+#include <algorithm>
 
 class Span
 {
@@ -24,7 +25,12 @@ class Span
 	class SpanFull: public std::exception
 		{
 			public:
-				const char* what() const _NOEXCEPT;
+				const char* what() const noexcept;
+		};
+	class SpanTooSmall: public std::exception
+		{
+			public:
+				const char* what() const noexcept;
 		};
 
 		Span();
@@ -38,11 +44,12 @@ class Span
 		// used to fill it
 		// if there are already N elements throw an exception
 
-		size_t	shortestSpan(const int& num);
-		size_t	longestSpan(const int& num);
+		size_t	shortestSpan() const;
+		size_t	longestSpan();
 		// finds the distane between the passed numbers
 		// if no number or only one throw an exception
 
+		size_t	getN();
 		void	printSpn();
 };
 
