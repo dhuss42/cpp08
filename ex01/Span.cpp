@@ -24,6 +24,9 @@ Span::Span() : _N(0)
 /*------------------------------*/
 Span::Span(size_t N) : _N(N)
 {
+	if (N < 0)
+		throw (NTooSmall());
+	// positive num
 }
 
 /*------------------------------*/
@@ -67,11 +70,21 @@ const char* Span::SpanFull::what() const noexcept
 	return ("Span is already full");
 }
 
+/*------------------------------*/
+/* Exception Span to small		*/
+/*------------------------------*/
 const char* Span::SpanTooSmall::what() const noexcept
 {
 	return ("Span only has one value or is empty");
 }
 
+/*------------------------------*/
+/* Exception Span to small		*/
+/*------------------------------*/
+const char* Span::NTooSmall::what() const noexcept
+{
+	return ("N cannot be negative");
+}
 //------------member functions--------------//
 
 /*------------------------------*/
@@ -81,7 +94,7 @@ void	Span::addNumber(const int& num)
 {
 	if (_spn.size() >= _N)
 		throw(SpanFull());
-		_spn.push_back(num);
+	_spn.push_back(num);
 }
 
 /*--------------------------------------*/
@@ -89,7 +102,8 @@ void	Span::addNumber(const int& num)
 /* 	- checks for size					*/
 /*	- makes copy						*/
 /*		- sorts copy					*/
-/*		- subtracts second from frist 	*/
+/*		- compares adjacant values diff */
+/* 		- if small updates diff			*/
 /*--------------------------------------*/
 size_t	Span::shortestSpan() const
 {
@@ -97,10 +111,16 @@ size_t	Span::shortestSpan() const
 		throw(SpanTooSmall());
 	
 	Span tmp(*this);
+	size_t diff = INT_MAX;
 	std::sort(tmp._spn.begin(), tmp._spn.end());
-	return (tmp._spn.at(1)- tmp._spn.front());
-	return (0);
+	for (auto it = tmp._spn.begin(); it != tmp._spn.end() - 1; ++it)
+	{
+		if ((*(it +1) - *it) < diff)
+			diff = (*(it +1) - *it);
+	}
+	return (diff);
 }
+
 
 /*----------------------------------*/
 /* longestSpan member function		*/
@@ -118,8 +138,6 @@ size_t	Span::longestSpan()
 	std::sort(tmp._spn.begin(), tmp._spn.end());
 	return (tmp._spn.back() - tmp._spn.front());
 }
-		// finds the distane between the passed numbers
-		// if no number or only one throw an exception
 
 //------------getter and printer--------------//
 

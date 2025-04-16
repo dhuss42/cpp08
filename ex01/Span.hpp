@@ -22,12 +22,17 @@ class Span
 		std::vector<size_t>	_spn;
 	public:
 
-	class SpanFull: public std::exception
+		class SpanFull: public std::exception
 		{
 			public:
 				const char* what() const noexcept;
 		};
-	class SpanTooSmall: public std::exception
+		class SpanTooSmall: public std::exception
+		{
+			public:
+				const char* what() const noexcept;
+		};
+		class NTooSmall: public std::exception
 		{
 			public:
 				const char* what() const noexcept;
@@ -40,20 +45,26 @@ class Span
 		~Span();
 
 		void	addNumber(const int& num);
-		// adds a number to the Span
-		// used to fill it
-		// if there are already N elements throw an exception
+		/*--------------------------------------------------*/
+		/* - Counts elements to add 						*/
+		/* - makes sure there is enough space				*/
+		/* - inserts them at the end of _spn				*/
+		/* std::distance 									*/
+		/* 	- returns distance between two iterators		*/
+		/* insert() 										*/
+		/* 	- inserts the values ranging from begin 		*/
+		/* 		to end at _spn.end()  						*/
+		/*--------------------------------------------------*/
+		template <typename It>
+		void	addNumberRange(It begin, It end)
+		{
+			if (std::distance(begin, end) + _spn.size() > _N)
+				throw (SpanFull());
+			_spn.insert(_spn.end(), begin, end);
+		}
 
 		size_t	shortestSpan() const;
 		size_t	longestSpan();
-		// finds the distane between the passed numbers
-		// if no number or only one throw an exception
-
 		size_t	getN();
 		void	printSpn();
 };
-
-// can store a max of N int
-// N is size_t only parameter passed in constructor
-
-// test Span with at least 10.000 number more is even better
