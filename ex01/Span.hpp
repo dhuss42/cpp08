@@ -49,7 +49,6 @@ class Span
 		size_t	longestSpan() const;
 		size_t	getN();
 		void	printSpn();
-
 };
 
 #include "Span.tpp"
