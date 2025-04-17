@@ -24,9 +24,6 @@ Span::Span() : _N(0)
 /*------------------------------*/
 Span::Span(size_t N) : _N(N)
 {
-	if (N < 0)
-		throw (NTooSmall());
-	// positive num
 }
 
 /*------------------------------*/
@@ -78,13 +75,6 @@ const char* Span::SpanTooSmall::what() const noexcept
 	return ("Span only has one value or is empty");
 }
 
-/*------------------------------*/
-/* Exception Span to small		*/
-/*------------------------------*/
-const char* Span::NTooSmall::what() const noexcept
-{
-	return ("N cannot be negative");
-}
 //------------member functions--------------//
 
 /*------------------------------*/
@@ -111,7 +101,7 @@ size_t	Span::shortestSpan() const
 		throw(SpanTooSmall());
 	
 	Span tmp(*this);
-	size_t diff = INT_MAX;
+	int diff = INT_MAX;
 	std::sort(tmp._spn.begin(), tmp._spn.end());
 	for (auto it = tmp._spn.begin(); it != tmp._spn.end() - 1; ++it)
 	{
@@ -121,7 +111,6 @@ size_t	Span::shortestSpan() const
 	return (diff);
 }
 
-
 /*----------------------------------*/
 /* longestSpan member function		*/
 /* 	- checks for size				*/
@@ -129,7 +118,7 @@ size_t	Span::shortestSpan() const
 /*		- sorts copy				*/
 /*		- subtracts front from end 	*/
 /*----------------------------------*/
-size_t	Span::longestSpan()
+size_t	Span::longestSpan() const
 {
 	if (_spn.size() < 2)
 		throw(SpanTooSmall());
