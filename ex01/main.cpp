@@ -12,7 +12,7 @@
 
 #include "Span.hpp"
 
-int	main()
+/* int	main()
 {
 	std::cout << "\033[34m\n[----------Constructor Tests----------]\033[37m" << std::endl;
 	std::cout << "\033[33m- Constructor\033[37m" << std::endl;
@@ -35,8 +35,8 @@ int	main()
 	spanAssign = span;
 	std::cout << "\033[35m--> add a number to OG span\033[37m" << std::endl;
 	span.addNumber(5);
-	spanAssign.printSpn();
 	std::cout << "\033[35m--> printing spanAssign\033[37m" << std::endl;
+	spanAssign.printSpn();
 
 
 	std::cout << "\033[34m\n[----------Exception Tests----------]\033[37m" << std::endl;
@@ -110,18 +110,19 @@ int	main()
 	std::cout << "The shortest span is: " << spanLarge.shortestSpan() << std::endl;
 	std::cout << "The longest span is: " << spanLarge.longestSpan() << std::endl;
 
+} */
+
+
+int main() 
+{
+	std::cout << "\033[34m\n[----------Tests----------]\033[37m" << std::endl;
+	std::cout << "\033[33m- INT_MIN to INT_MAX \033[37m" << std::endl;
+	Span sp = Span(2);
+	sp.addNumber(INT_MAX);
+	sp.addNumber(INT_MIN);
+	std::cout << "\033[35m--> shortest Span\033[37m" << std::endl;
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << "\033[35m--> longest Span\033[37m" << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+	return 0; 
 }
-
-
-// int main() 
-// {
-// 	Span sp = Span(5);
-// 	sp.addNumber(6);
-// 	sp.addNumber(3);
-// 	sp.addNumber(17);
-// 	sp.addNumber(9);
-// 	sp.addNumber(11);
-// 	std::cout << sp.shortestSpan() << std::endl;
-// 	std::cout << sp.longestSpan() << std::endl;
-// 	return 0; 
-// }

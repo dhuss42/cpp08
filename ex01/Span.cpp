@@ -101,14 +101,15 @@ size_t	Span::shortestSpan() const
 		throw(SpanTooSmall());
 	
 	Span tmp(*this);
-	int diff = INT_MAX;
+	long long diff = LLONG_MAX;
 	std::sort(tmp._spn.begin(), tmp._spn.end());
 	for (auto it = tmp._spn.begin(); it != tmp._spn.end() - 1; ++it)
 	{
-		if ((*(it +1) - *it) < diff)
-			diff = (*(it +1) - *it);
+		long long tmp = static_cast<long long>(*(it + 1)) - static_cast<long long>(*it);
+		if (tmp < diff)
+			diff = tmp;
 	}
-	return (diff);
+	return (static_cast<size_t>(diff));
 }
 
 /*----------------------------------*/
@@ -125,7 +126,8 @@ size_t	Span::longestSpan() const
 
 	Span tmp(*this);
 	std::sort(tmp._spn.begin(), tmp._spn.end());
-	return (tmp._spn.back() - tmp._spn.front());
+	long long diff = static_cast<long long>(tmp._spn.back()) - static_cast<long long>(tmp._spn.front());
+	return (static_cast<size_t>(diff));
 }
 
 //------------getter and printer--------------//
