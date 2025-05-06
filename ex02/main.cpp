@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dhuss <dhuss@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/06 09:27:27 by dhuss             #+#    #+#             */
+/*   Updated: 2025/05/06 09:27:29 by dhuss            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include "vector"
@@ -12,7 +23,7 @@ int main()
 	mstack.pop();
 	std::cout << mstack.size() << std::endl;
 	mstack.push(3); mstack.push(5); mstack.push(737);
-	MutantStack<int>::iterator it = mstack.begin(); 
+	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
 	++it;
 	--it;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dhuss <dhuss@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/06 09:27:44 by dhuss             #+#    #+#             */
+/*   Updated: 2025/05/06 09:27:45 by dhuss            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MUTANTSTACK_HPP
 # define MUTANTSTACK_HPP
 
@@ -11,11 +23,11 @@
 /*  - Stack is a limited implementation of this container conforming to 		*/
 /*		the rules of a stack 													*/
 /*------------------------------------------------------------------------------*/
-template <typename T> 
+template <typename T>
 class MutantStack : public std::stack<T>
 {
 	private:
-		
+
 	public:
 		MutantStack();
 		MutantStack(const MutantStack& src);
